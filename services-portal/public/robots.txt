@@ -1,0 +1,13 @@
+# Services Portal Robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /data/apps/databases/*
+Disallow: /data/repos
+Disallow: /data/media
+Disallow: /data/apps/dashboards/*
+Disallow: /data/apps/monitoring/grafana
+
+# Sitemap
+Sitemap: /sitemap.xml
