@@ -120,16 +120,6 @@ export const SERVICES = [
     adminOnly: true,
   },
   {
-    id: 'homepage',
-    title: 'Homepage/Dashy',
-    description: 'Dashboard configuration',
-    path: '/data/apps/dashboards/homepage',
-    icon: '📊',
-    category: 'Dashboards',
-    status: SERVICE_STATUS.ACTIVE,
-    adminOnly: true,
-  },
-  {
     id: 'grafana',
     title: 'Grafana',
     description: 'Metrics visualization',
