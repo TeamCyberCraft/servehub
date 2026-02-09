@@ -15,15 +15,11 @@ export default function Header({ onMenuClick }) {
         Services Portal
       </Link>
       <div className="header-actions">
-        {user ? (
+        {user && (
           <div className="header-user">
             <span className="header-user-name">{user.name}</span>
             {isAdmin() && <span className="header-admin-badge">Admin</span>}
           </div>
-        ) : (
-          <Link to="/admin/login" className="btn btn-primary btn-sm">
-            Login
-          </Link>
         )}
       </div>
     </header>

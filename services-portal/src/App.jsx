@@ -5,7 +5,6 @@ import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './pages/Dashboard';
 import AdminDashboard from './pages/AdminDashboard';
-import SignUp from './pages/SignUp';
 import AdminLogin from './pages/AdminLogin';
 import NotFound from './pages/NotFound';
 import { routes } from './routes/routes';
@@ -17,7 +16,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Auth routes (outside layout) */}
-          <Route path="/signup" element={<SignUp />} />
           <Route path="/admin/login" element={<AdminLogin />} />
 
           {/* Main layout routes */}

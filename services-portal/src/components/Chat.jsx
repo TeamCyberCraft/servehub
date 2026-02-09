@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 
 export default function Chat({ contextId, type = 'service' }) {
   const [messages, setMessages] = useState([
@@ -13,14 +12,10 @@ export default function Chat({ contextId, type = 'service' }) {
   ]);
   const [newMessage, setNewMessage] = useState('');
   const { user, isAuthenticated } = useAuth();
-  const navigate = useNavigate();
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (!isAuthenticated()) {
-      navigate('/signup');
-      return;
-    }
+    if (!isAuthenticated()) return;
     if (!newMessage.trim()) return;
 
     const msg = {
@@ -47,7 +42,7 @@ export default function Chat({ contextId, type = 'service' }) {
       <form className="chat-input" onSubmit={handleSendMessage}>
         <input
           type="text"
-          placeholder={isAuthenticated() ? "Type a message..." : "Sign in to chat"}
+          placeholder={isAuthenticated() ? "Type a message..." : "Auth required (Authelia)"}
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           disabled={!isAuthenticated() && type === 'community'} // Community is view-only for guests
@@ -57,7 +52,7 @@ export default function Chat({ contextId, type = 'service' }) {
         </button>
       </form>
       {!isAuthenticated() && (
-        <p className="chat-hint">You must <span className="link" onClick={() => navigate('/signup')}>Sign In</span> to participate.</p>
+        <p className="chat-hint">Authentication is handled by Authelia. Please log in via the gateway.</p>
       )}
     </div>
   );
