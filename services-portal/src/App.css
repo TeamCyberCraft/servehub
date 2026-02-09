@@ -1259,29 +1259,6 @@ a:hover {
   gap: 32px;
 }
 
-.api-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.api-row-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 12px;
-}
-
-.api-method {
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
-.api-path {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  word-break: break-all;
-}
-
 .info-helper {
   color: var(--color-text-muted);
   font-size: 0.9rem;

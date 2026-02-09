@@ -2,14 +2,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { SERVICES, SERVICE_STATUS } from '../constants/services';
 import Rating from '../components/Rating';
 import Chat from '../components/Chat';
-import { useAuth } from '../context/AuthContext';
-import { API_ROUTES, getServiceApiEndpoints } from '../constants/apiRoutes';
 
 export default function ServicePage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
-
   // Find service by current path
   const service = SERVICES.find(s => s.path === location.pathname);
 
@@ -22,14 +18,13 @@ export default function ServicePage() {
     );
   }
 
-  const { title, description, icon, status, category, featured, path } = service;
-  const apiEndpoints = getServiceApiEndpoints(service.id);
+  const { title, description, status, category, featured, path } = service;
 
   return (
     <div className="service-page">
       <div className="page-header" style={{ backgroundImage: service.wallpaper ? `url(${service.wallpaper})` : 'none' }}>
         <div className="page-header-overlay">
-          <div className="page-header-icon">{icon}</div>
+          <div className="page-header-icon">{service.icon}</div>
           <div className="page-header-content">
             <div className="category-tag">{category}</div>
             <h1>{title}</h1>
@@ -50,29 +45,6 @@ export default function ServicePage() {
               this service provides robust functionality for your needs.
             </p>
             {featured && <p className="featured-tag">🌟 Featured Product</p>}
-          </section>
-
-          <section className="service-section">
-            <h2>API Endpoints</h2>
-            <div className="info-list">
-              <div className="info-item">
-                <span className="label">Catalog</span>
-                <span className="value">{API_ROUTES.services.list}</span>
-                <p className="info-helper">List or register services available in the portal.</p>
-              </div>
-              {apiEndpoints.map((endpoint) => (
-                <div className="info-item api-row" key={`${endpoint.method}-${endpoint.path}`}>
-                  <div className="api-row-header">
-                    <span className="api-method">{endpoint.method}</span>
-                    <span className="api-path">{endpoint.path}</span>
-                  </div>
-                  <p className="info-helper">{endpoint.label}</p>
-                </div>
-              ))}
-            </div>
-            {!isAuthenticated() && (
-              <p className="info-helper">Sign in to interact with these APIs.</p>
-            )}
           </section>
 
           <section className="service-section">
