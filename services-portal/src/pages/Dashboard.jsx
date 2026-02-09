@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { SERVICES } from '../constants/services';
 
 export default function Dashboard() {
-  const { user, isAdmin, isAuthenticated } = useAuth();
+  const { user, isAuthenticated } = useAuth();
 
   const getVisibleServices = () => {
     if (!isAuthenticated()) {
@@ -31,7 +31,7 @@ export default function Dashboard() {
           <h1>Welcome to Services Portal</h1>
           <p>
             The centralized hub for all your automation, media, and smart home services.
-            Explore our featured products below or sign in to access more services and community features.
+            Explore our featured products below. Authentication is provided by Authelia at the gateway.
           </p>
         </section>
       )}
@@ -58,10 +58,7 @@ export default function Dashboard() {
 
       {!isAuthenticated() && (
         <div className="cta-section">
-          <p>Want to see more? Join our community today!</p>
-          <button className="btn btn-primary" onClick={() => window.location.href = '/signup'}>
-            Sign Up Now
-          </button>
+          <p>Access is managed by Authelia—please log in through your organization&apos;s gateway.</p>
         </div>
       )}
     </div>

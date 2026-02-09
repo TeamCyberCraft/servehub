@@ -8,7 +8,6 @@ import Login from '../pages/Login';
 export const routes = {
   // Public routes
   public: [
-    { path: '/signup', label: 'Sign Up' },
     { path: '/login', label: 'Login', component: Login },
     { path: '/admin/login', label: 'Admin Login' },
     { path: '/community', label: 'Community', component: CommunityPage },

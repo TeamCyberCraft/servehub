@@ -77,14 +77,7 @@ export default function Sidebar({ isOpen, onClose }) {
               </button>
             </div>
           ) : (
-            <div className="sidebar-auth-links">
-              <NavLink to="/admin/login" className="btn btn-primary btn-sm" onClick={onClose}>
-                Admin Login
-              </NavLink>
-              <NavLink to="/signup" className="btn btn-secondary btn-sm" onClick={onClose}>
-                Sign Up
-              </NavLink>
-            </div>
+            <p className="info-helper">Authentication is handled externally by Authelia.</p>
           )}
         </div>
       </aside>

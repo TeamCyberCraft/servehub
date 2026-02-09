@@ -5,7 +5,7 @@ import { SERVICE_STATUS } from '../constants/services';
 
 export default function ServiceCard({ service }) {
   const { title, description, path, icon, adminOnly, status } = service;
-  const { user, isAdmin } = useAuth();
+  const { isAdmin } = useAuth();
 
   // Don't show admin-only services to non-admin users
   if (adminOnly && !isAdmin()) {

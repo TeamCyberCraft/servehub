@@ -2,13 +2,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { SERVICES, SERVICE_STATUS } from '../constants/services';
 import Rating from '../components/Rating';
 import Chat from '../components/Chat';
-import { useAuth } from '../context/AuthContext';
 
 export default function ServicePage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
-  
   // Find service by current path
   const service = SERVICES.find(s => s.path === location.pathname);
 
@@ -21,13 +18,13 @@ export default function ServicePage() {
     );
   }
 
-  const { title, description, icon, status, category, featured } = service;
+  const { title, description, status, category, featured, path } = service;
 
   return (
     <div className="service-page">
       <div className="page-header" style={{ backgroundImage: service.wallpaper ? `url(${service.wallpaper})` : 'none' }}>
         <div className="page-header-overlay">
-          <div className="page-header-icon">{icon}</div>
+          <div className="page-header-icon">{service.icon}</div>
           <div className="page-header-content">
             <div className="category-tag">{category}</div>
             <h1>{title}</h1>
@@ -85,6 +82,10 @@ export default function ServicePage() {
               <div className="info-item">
                 <span className="label">Status:</span>
                 <span className="value">{status}</span>
+              </div>
+              <div className="info-item">
+                <span className="label">Portal Path:</span>
+                <span className="value">{path}</span>
               </div>
             </div>
           </section>

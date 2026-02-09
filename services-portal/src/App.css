@@ -1259,6 +1259,11 @@ a:hover {
   gap: 32px;
 }
 
+.info-helper {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
 .service-actions-vertical {
   display: flex;
   flex-direction: column;
