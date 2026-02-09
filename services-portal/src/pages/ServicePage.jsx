@@ -3,12 +3,13 @@ import { SERVICES, SERVICE_STATUS } from '../constants/services';
 import Rating from '../components/Rating';
 import Chat from '../components/Chat';
 import { useAuth } from '../context/AuthContext';
+import { API_ROUTES, getServiceApiEndpoints } from '../constants/apiRoutes';
 
 export default function ServicePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
-  
+
   // Find service by current path
   const service = SERVICES.find(s => s.path === location.pathname);
 
@@ -21,7 +22,8 @@ export default function ServicePage() {
     );
   }
 
-  const { title, description, icon, status, category, featured } = service;
+  const { title, description, icon, status, category, featured, path } = service;
+  const apiEndpoints = getServiceApiEndpoints(service.id);
 
   return (
     <div className="service-page">
@@ -48,6 +50,29 @@ export default function ServicePage() {
               this service provides robust functionality for your needs.
             </p>
             {featured && <p className="featured-tag">🌟 Featured Product</p>}
+          </section>
+
+          <section className="service-section">
+            <h2>API Endpoints</h2>
+            <div className="info-list">
+              <div className="info-item">
+                <span className="label">Catalogue</span>
+                <span className="value">{API_ROUTES.services.list}</span>
+                <p className="info-helper">List or register services available in the portal.</p>
+              </div>
+              {apiEndpoints.map((endpoint) => (
+                <div className="info-item api-row" key={`${endpoint.method}-${endpoint.path}`}>
+                  <div className="api-row-header">
+                    <span className="api-method">{endpoint.method}</span>
+                    <span className="api-path">{endpoint.path}</span>
+                  </div>
+                  <p className="info-helper">{endpoint.label}</p>
+                </div>
+              ))}
+            </div>
+            {!isAuthenticated() && (
+              <p className="info-helper">Sign in to interact with these APIs.</p>
+            )}
           </section>
 
           <section className="service-section">
@@ -85,6 +110,10 @@ export default function ServicePage() {
               <div className="info-item">
                 <span className="label">Status:</span>
                 <span className="value">{status}</span>
+              </div>
+              <div className="info-item">
+                <span className="label">Portal Path:</span>
+                <span className="value">{path}</span>
               </div>
             </div>
           </section>

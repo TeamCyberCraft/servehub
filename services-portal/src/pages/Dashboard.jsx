@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { SERVICES } from '../constants/services';
 
 export default function Dashboard() {
-  const { user, isAdmin, isAuthenticated } = useAuth();
+  const { user, isAuthenticated } = useAuth();
 
   const getVisibleServices = () => {
     if (!isAuthenticated()) {

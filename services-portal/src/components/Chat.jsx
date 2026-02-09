@@ -4,7 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Chat({ contextId, type = 'service' }) {
   const [messages, setMessages] = useState([
-    { id: 1, user: 'System', text: `Welcome to the ${type} chat!`, timestamp: new Date().toLocaleTimeString() },
+    { 
+      id: 1, 
+      user: 'System', 
+      text: `Welcome to the ${type} chat${contextId ? ` for ${contextId}` : ''}!`, 
+      timestamp: new Date().toLocaleTimeString() 
+    },
   ]);
   const [newMessage, setNewMessage] = useState('');
   const { user, isAuthenticated } = useAuth();

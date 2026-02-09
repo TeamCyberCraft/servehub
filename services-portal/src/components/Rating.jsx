@@ -14,7 +14,7 @@ export default function Rating({ serviceId, initialRating = 0, onRate }) {
       return;
     }
     setRating(value);
-    if (onRate) onRate(value);
+    if (onRate) onRate({ rating: value, serviceId });
   };
 
   return (
