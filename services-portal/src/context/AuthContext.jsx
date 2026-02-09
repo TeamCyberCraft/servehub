@@ -12,8 +12,7 @@ function getInitialUser() {
       localStorage.removeItem('user');
     }
   }
-  // Default to an externally authenticated user (e.g., Authelia) when no local session exists.
-  return { email: 'authelia@local', role: ROLES.USER, name: 'Authelia User' };
+  return null;
 }
 
 export function AuthProvider({ children }) {

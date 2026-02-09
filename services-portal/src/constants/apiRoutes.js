@@ -22,12 +22,18 @@ export const API_ROUTES = {
   },
 };
 
+/**
+ * Build the list of API endpoints exposed for a given service.
+ * @param {string} [serviceId=':serviceId'] - Service identifier used to interpolate endpoint paths.
+ * @returns {Array<{label: string, method: string, path: string}>} Endpoint definitions.
+ */
 export function getServiceApiEndpoints(serviceId) {
   const id = serviceId || ':serviceId';
   return [
     { label: 'Service details', method: 'GET', path: withServiceId(API_ROUTES.services.detail, id) },
     { label: 'Health check', method: 'GET', path: withServiceId(API_ROUTES.services.health, id) },
     { label: 'Ratings', method: 'POST', path: withServiceId(API_ROUTES.services.ratings, id) },
-    { label: 'Messages', method: 'GET/POST', path: withServiceId(API_ROUTES.services.messages, id) },
+    { label: 'Get messages', method: 'GET', path: withServiceId(API_ROUTES.services.messages, id) },
+    { label: 'Send message', method: 'POST', path: withServiceId(API_ROUTES.services.messages, id) },
   ];
 }

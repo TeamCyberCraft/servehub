@@ -3,12 +3,7 @@ import { useAuth } from '../context/AuthContext';
 
 export default function Chat({ contextId, type = 'service' }) {
   const [messages, setMessages] = useState([
-    { 
-      id: 1, 
-      user: 'System', 
-      text: `Welcome to the ${type} chat${contextId ? ` for ${contextId}` : ''}!`, 
-      timestamp: new Date().toLocaleTimeString() 
-    },
+    { id: 1, user: 'System', text: `Welcome to the ${type} chat!`, timestamp: new Date().toLocaleTimeString() },
   ]);
   const [newMessage, setNewMessage] = useState('');
   const { user, isAuthenticated } = useAuth();
@@ -29,7 +24,7 @@ export default function Chat({ contextId, type = 'service' }) {
   };
 
   return (
-    <div className="chat-component">
+    <div className="chat-component" data-context-id={contextId || type}>
       <div className="chat-messages">
         {messages.map((msg) => (
           <div key={msg.id} className="chat-message">
@@ -42,12 +37,12 @@ export default function Chat({ contextId, type = 'service' }) {
       <form className="chat-input" onSubmit={handleSendMessage}>
         <input
           type="text"
-          placeholder={isAuthenticated() ? "Type a message..." : "Auth required (Authelia)"}
+          placeholder={isAuthenticated() ? "Type a message..." : "Authentication required (Authelia)"}
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          disabled={!isAuthenticated() && type === 'community'} // Community is view-only for guests
+          disabled={!isAuthenticated()}
         />
-        <button type="submit" className="btn btn-primary" disabled={!isAuthenticated() && type === 'community'}>
+        <button type="submit" className="btn btn-primary" disabled={!isAuthenticated()}>
           Send
         </button>
       </form>

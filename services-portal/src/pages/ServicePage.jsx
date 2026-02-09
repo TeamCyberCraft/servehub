@@ -56,7 +56,7 @@ export default function ServicePage() {
             <h2>API Endpoints</h2>
             <div className="info-list">
               <div className="info-item">
-                <span className="label">Catalogue</span>
+                <span className="label">Catalog</span>
                 <span className="value">{API_ROUTES.services.list}</span>
                 <p className="info-helper">List or register services available in the portal.</p>
               </div>

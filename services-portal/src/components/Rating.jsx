@@ -11,11 +11,11 @@ export default function Rating({ serviceId, initialRating = 0, onRate }) {
       return;
     }
     setRating(value);
-    if (onRate) onRate({ rating: value, serviceId });
+    if (onRate) onRate(value);
   };
 
   return (
-    <div className="rating-component">
+    <div className="rating-component" data-service-id={serviceId ?? 'unknown'}>
       <div className="stars">
         {[1, 2, 3, 4, 5].map((star) => (
           <button
